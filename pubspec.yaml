@@ -24,11 +24,36 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_localizations:
+    sdk: flutter
+
+  train_simulator_client:
+    git:
+      ref: v0.3.0
+      url: https://github.com/tnc1997/dart-train-simulator-client
+
+  auto_route: ^0.6.0
   cupertino_icons: ^1.0.0
+  intl: ^0.16.0
+  flutter_hooks: ^0.12.0
+  get_it: ^4.0.0
+  injectable: ^1.0.0
+  mdi: ^4.0.0
+  path: ^1.0.0
+  responsive_builder: ^0.3.0
+  shared_preferences: ^0.5.0
+  stacked: ^1.0.0
+  stacked_hooks: ^0.1.0
+  stacked_services: ^0.5.0
+  stacked_themes: ^0.2.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  auto_route_generator: ^0.6.0
+  build_runner: ^1.0.0
+  injectable_generator: ^1.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
