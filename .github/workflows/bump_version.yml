@@ -1,0 +1,24 @@
+name: Bump version
+on:
+  workflow_dispatch:
+jobs:
+  bump_version:
+    name: Bump version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Configure git
+        run: |
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - name: Bump version
+        run: |
+          npm install semver@7 yaml@1
+          npx standard-version@8
+          git push --follow-tags origin main

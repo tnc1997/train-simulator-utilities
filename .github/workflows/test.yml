@@ -1,0 +1,23 @@
+name: Test
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    name: Build
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install flutter
+        run: |
+          New-Item -Path "$env:USERPROFILE\Tools" -Type Directory
+          Set-Location -Path "$env:USERPROFILE\Tools"
+          git clone https://github.com/flutter/flutter.git
+          & "$env:USERPROFILE\Tools\flutter\bin\flutter" config --enable-windows-desktop
+          & "$env:USERPROFILE\Tools\flutter\bin\flutter" doctor
+      - name: Build windows
+        run: |
+          & "$env:USERPROFILE\Tools\flutter\bin\flutter" packages get
+          & "$env:USERPROFILE\Tools\flutter\bin\flutter" build windows
