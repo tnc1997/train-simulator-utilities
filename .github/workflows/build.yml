@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         name: Create release
         uses: actions/create-release@v1
         with:
@@ -45,6 +47,8 @@ jobs:
         run: |
           Compress-Archive -DestinationPath .\Release.zip -Path .\build\windows\runner\Release
       - name: Upload release asset
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         uses: actions/upload-release-asset@v1
         with:
           asset_content_type: application/zip
