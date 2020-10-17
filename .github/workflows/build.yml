@@ -26,15 +26,16 @@ jobs:
         uses: actions/checkout@v2
       - name: Install flutter
         run: |
-          New-Item -Path "$env:USERPROFILE\Tools" -Type Directory
-          Set-Location -Path "$env:USERPROFILE\Tools"
+          mkdir ~/Tools && cd $_
           git clone https://github.com/flutter/flutter.git
-          & "$env:USERPROFILE\Tools\flutter\bin\flutter" config --enable-windows-desktop
-          & "$env:USERPROFILE\Tools\flutter\bin\flutter" doctor
+          ~/Tools/flutter/bin/flutter config --enable-windows-desktop
+          ~/Tools/flutter/bin/flutter doctor
+        shell: bash
       - name: Build windows
         run: |
-          & "$env:USERPROFILE\Tools\flutter\bin\flutter" packages get
-          & "$env:USERPROFILE\Tools\flutter\bin\flutter" build windows
+          ~/Tools/flutter/bin/flutter packages get
+          ~/Tools/flutter/bin/flutter build windows
+        shell: bash
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
