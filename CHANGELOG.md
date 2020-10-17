@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/tnc1997/flutter-train-simulator-utilities/compare/v0.1.0...v0.1.1) (2020-10-17)
+
+
+### Features
+
+* **settings:** add path text field ([#2](https://github.com/tnc1997/flutter-train-simulator-utilities/issues/2)) ([f0360a4](https://github.com/tnc1997/flutter-train-simulator-utilities/commit/f0360a4cbf2adf25aa57ce55c56a126b90019a28))
+
+
+### Continuous Integrations
+
+* update build ([4dcc981](https://github.com/tnc1997/flutter-train-simulator-utilities/commit/4dcc981a77f80ec14b1aa612c70fddb0774032f9))
+
 ## 0.1.0 (2020-10-17)
 
 
