@@ -12,7 +12,7 @@ class _AppState extends State<App> {
   final _routeInformationParser = AppRouteInformationParser();
 
   AppRouterDelegate _routerDelegate;
-  RouterStateData _routerState;
+  RouterStateData _notifier;
 
   @override
   Widget build(BuildContext context) {
@@ -26,16 +26,16 @@ class _AppState extends State<App> {
   @override
   void dispose() {
     _routerDelegate.dispose();
-    _routerState.dispose();
+    _notifier.dispose();
     super.dispose();
   }
 
   @override
   void initState() {
     super.initState();
-    _routerState = RouterStateData();
+    _notifier = RouterStateData();
     _routerDelegate = AppRouterDelegate(
-      routerState: _routerState,
+      notifier: _notifier,
     );
   }
 }

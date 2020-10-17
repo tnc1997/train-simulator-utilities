@@ -4,11 +4,11 @@ import 'package:train_simulator_utilities/src/route_paths/route_path.dart';
 class RouterState extends InheritedNotifier<RouterStateData> {
   const RouterState({
     Key key,
+    RouterStateData notifier,
     @required Widget child,
-    RouterStateData routerState,
   }) : super(
           key: key,
-          notifier: routerState,
+          notifier: notifier,
           child: child,
         );
 

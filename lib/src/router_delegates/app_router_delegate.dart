@@ -11,64 +11,64 @@ class AppRouterDelegate extends RouterDelegate<RouterConfiguration>
   @override
   final navigatorKey = GlobalKey<NavigatorState>();
 
-  final RouterStateData routerState;
+  final RouterStateData notifier;
 
   AppRouterDelegate({
-    @required this.routerState,
+    @required this.notifier,
   }) {
-    routerState.addListener(notifyListeners);
+    notifier.addListener(notifyListeners);
   }
 
   @override
   Widget build(BuildContext context) {
     return RouterState(
+      notifier: notifier,
       child: Navigator(
         key: navigatorKey,
-        onPopPage: (route, result) {
-          final path = routerState.path;
-          final success = route.didPop(result);
-
-          if (success) {
-            if (path is SettingsRoutePath) {
-              routerState.path = const HomeRoutePath();
-            }
-          }
-
-          return success;
-        },
         pages: [
           const MaterialPage<void>(
             child: const HomePage(),
             key: const Key('home_page'),
           ),
-          if (routerState.path is SettingsRoutePath)
+          if (notifier.path is SettingsRoutePath)
             const MaterialPage<void>(
               child: const SettingsPage(),
               key: const Key('settings_page'),
             ),
         ],
+        onPopPage: (route, result) {
+          final path = notifier.path;
+          final success = route.didPop(result);
+
+          if (success) {
+            if (path is SettingsRoutePath) {
+              notifier.path = const HomeRoutePath();
+            }
+          }
+
+          return success;
+        },
       ),
-      routerState: routerState,
     );
   }
 
   @override
   RouterConfiguration get currentConfiguration {
     return RouterConfiguration(
-      path: routerState.path,
-      state: routerState.state,
+      path: notifier.path,
+      state: notifier.state,
     );
   }
 
   @override
   void dispose() {
-    routerState.removeListener(notifyListeners);
+    notifier.removeListener(notifyListeners);
     super.dispose();
   }
 
   @override
   Future<void> setNewRoutePath(RouterConfiguration configuration) async {
-    routerState.path = configuration.path;
-    routerState.state = configuration.state;
+    notifier.path = configuration.path;
+    notifier.state = configuration.state;
   }
 }
