@@ -20,5 +20,5 @@ jobs:
       - name: Bump version
         run: |
           npm install semver@7 yaml@1
-          npx standard-version@8
+          npx standard-version@8 --first-release
           git push --follow-tags origin main
