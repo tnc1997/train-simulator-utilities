@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mdi/mdi.dart';
 import 'package:train_simulator_utilities/src/route_paths/home_route_path.dart';
+import 'package:train_simulator_utilities/src/route_paths/routes_route_path.dart';
 import 'package:train_simulator_utilities/src/route_paths/settings_route_path.dart';
+import 'package:train_simulator_utilities/src/states/app_state.dart';
 import 'package:train_simulator_utilities/src/states/router_state.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -15,7 +17,7 @@ class AppDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
-        children: [
+        children: <Widget>[
           DrawerHeader(
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primary,
@@ -28,6 +30,16 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pop();
               RouterState.of(context).path = const HomeRoutePath();
+            },
+          ),
+          const Divider(),
+          ListTile(
+            leading: Icon(Mdi.routes),
+            title: Text('Routes'),
+            enabled: AppState.of(context).client != null,
+            onTap: () {
+              Navigator.of(context).pop();
+              RouterState.of(context).path = const RoutesRoutePath();
             },
           ),
           const Divider(),
