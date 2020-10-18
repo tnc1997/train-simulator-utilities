@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:train_simulator_utilities/src/configurations/router_configuration.dart';
 import 'package:train_simulator_utilities/src/pages/home_page.dart';
+import 'package:train_simulator_utilities/src/pages/routes_page.dart';
 import 'package:train_simulator_utilities/src/pages/settings_page.dart';
 import 'package:train_simulator_utilities/src/route_paths/home_route_path.dart';
+import 'package:train_simulator_utilities/src/route_paths/routes_route_path.dart';
 import 'package:train_simulator_utilities/src/route_paths/settings_route_path.dart';
 import 'package:train_simulator_utilities/src/states/router_state.dart';
 
@@ -30,6 +32,11 @@ class AppRouterDelegate extends RouterDelegate<RouterConfiguration>
             child: const HomePage(),
             key: const Key('home_page'),
           ),
+          if (notifier.path is RoutesRoutePath)
+            const MaterialPage<void>(
+              child: const RoutesPage(),
+              key: const Key('routes_page'),
+            ),
           if (notifier.path is SettingsRoutePath)
             const MaterialPage<void>(
               child: const SettingsPage(),
@@ -41,7 +48,9 @@ class AppRouterDelegate extends RouterDelegate<RouterConfiguration>
           final success = route.didPop(result);
 
           if (success) {
-            if (path is SettingsRoutePath) {
+            if (path is RoutesRoutePath) {
+              notifier.path = const HomeRoutePath();
+            } else if (path is SettingsRoutePath) {
               notifier.path = const HomeRoutePath();
             }
           }
