@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:train_simulator_client/train_simulator_client.dart' hide Key;
+import 'package:train_simulator_utilities/src/route_paths/route_route_path.dart';
 import 'package:train_simulator_utilities/src/states/app_state.dart';
+import 'package:train_simulator_utilities/src/states/router_state.dart';
 import 'package:train_simulator_utilities/src/widgets/app_drawer.dart';
 
 class RoutesPage extends StatefulWidget {
@@ -31,15 +33,20 @@ class _RoutesPageState extends State<RoutesPage> {
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Text(
-                    snapshot.data[index].id1.cGuid.devString.toString(),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  subtitle: Text(
                     snapshot.data[index].displayName
                         .localisationCUserLocalisedString.english
                         .toString(),
                     overflow: TextOverflow.ellipsis,
                   ),
+                  subtitle: Text(
+                    snapshot.data[index].id1.cGuid.devString.toString(),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  onTap: () {
+                    RouterState.of(context).path = RouteRoutePath(
+                      id: snapshot.data[index].id1.cGuid.devString.toString(),
+                    );
+                  },
                 );
               },
               itemCount: snapshot.data.length,
