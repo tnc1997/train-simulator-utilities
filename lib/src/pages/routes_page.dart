@@ -37,7 +37,7 @@ class _RoutesPageState extends State<RoutesPage> {
 
               if (route != null) {
                 RouterState.of(context).path = RouteRoutePath(
-                  id: route.id1.cGuid.devString.toString(),
+                  routeId: route.id1.cGuid.devString.toString(),
                 );
               }
             },
@@ -64,7 +64,8 @@ class _RoutesPageState extends State<RoutesPage> {
                   ),
                   onTap: () {
                     RouterState.of(context).path = RouteRoutePath(
-                      id: snapshot.data[index].id1.cGuid.devString.toString(),
+                      routeId:
+                          snapshot.data[index].id1.cGuid.devString.toString(),
                     );
                   },
                 );

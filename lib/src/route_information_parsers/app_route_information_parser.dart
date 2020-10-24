@@ -8,11 +8,6 @@ import 'package:train_simulator_utilities/src/route_paths/scenario_route_path.da
 import 'package:train_simulator_utilities/src/route_paths/scenarios_route_path.dart';
 import 'package:train_simulator_utilities/src/route_paths/settings_route_path.dart';
 
-const _kHomePageLocation = '/';
-const _kRoutesPageLocation = '/routes';
-const _kScenariosPageLocation = '/scenarios';
-const _kSettingsPageLocation = '/settings';
-
 class AppRouteInformationParser
     extends RouteInformationParser<RouterConfiguration> {
   @override
@@ -34,25 +29,26 @@ class AppRouteInformationParser
           return SynchronousFuture(
             RouterConfiguration(
               path: RouteRoutePath(
-                id: uri.pathSegments[1],
+                routeId: uri.pathSegments[1],
               ),
               state: routeInformation.state,
             ),
           );
-        }
-      } else if (uri.pathSegments[0] == 'scenarios') {
-        if (uri.pathSegments.length == 1) {
+        } else if (uri.pathSegments.length == 3) {
           return SynchronousFuture(
             RouterConfiguration(
-              path: ScenariosRoutePath(),
+              path: ScenariosRoutePath(
+                routeId: uri.pathSegments[1],
+              ),
               state: routeInformation.state,
             ),
           );
-        } else if (uri.pathSegments.length == 2) {
+        } else if (uri.pathSegments.length == 4) {
           return SynchronousFuture(
             RouterConfiguration(
               path: ScenarioRoutePath(
-                id: uri.pathSegments[1],
+                routeId: uri.pathSegments[1],
+                scenarioId: uri.pathSegments[3],
               ),
               state: routeInformation.state,
             ),
@@ -86,32 +82,32 @@ class AppRouteInformationParser
 
     if (path is HomeRoutePath) {
       return RouteInformation(
-        location: _kHomePageLocation,
+        location: '/',
         state: configuration.state,
       );
     } else if (path is RouteRoutePath) {
       return RouteInformation(
-        location: '$_kRoutesPageLocation/${path.id}',
+        location: '/routes/${path.routeId}',
         state: configuration.state,
       );
     } else if (path is RoutesRoutePath) {
       return RouteInformation(
-        location: _kRoutesPageLocation,
+        location: '/routes',
         state: configuration.state,
       );
     } else if (path is ScenarioRoutePath) {
       return RouteInformation(
-        location: '$_kScenariosPageLocation/${path.id}',
+        location: '/routes/${path.routeId}/scenarios/${path.scenarioId}',
         state: configuration.state,
       );
     } else if (path is ScenariosRoutePath) {
       return RouteInformation(
-        location: _kScenariosPageLocation,
+        location: '/routes/${path.routeId}/scenarios',
         state: configuration.state,
       );
     } else if (path is SettingsRoutePath) {
       return RouteInformation(
-        location: _kSettingsPageLocation,
+        location: '/settings',
         state: configuration.state,
       );
     }
