@@ -3,10 +3,12 @@ import 'package:train_simulator_utilities/src/configurations/router_configuratio
 import 'package:train_simulator_utilities/src/pages/home_page.dart';
 import 'package:train_simulator_utilities/src/pages/route_page.dart';
 import 'package:train_simulator_utilities/src/pages/routes_page.dart';
+import 'package:train_simulator_utilities/src/pages/scenarios_page.dart';
 import 'package:train_simulator_utilities/src/pages/settings_page.dart';
 import 'package:train_simulator_utilities/src/route_paths/home_route_path.dart';
 import 'package:train_simulator_utilities/src/route_paths/route_route_path.dart';
 import 'package:train_simulator_utilities/src/route_paths/routes_route_path.dart';
+import 'package:train_simulator_utilities/src/route_paths/scenarios_route_path.dart';
 import 'package:train_simulator_utilities/src/route_paths/settings_route_path.dart';
 import 'package:train_simulator_utilities/src/states/router_state.dart';
 
@@ -43,7 +45,7 @@ class AppRouterDelegate extends RouterDelegate<RouterConfiguration>
           ),
           MaterialPage<void>(
             child: RoutePage(
-              id: path.id,
+              routeId: path.routeId,
             ),
             key: Key('route_page'),
           ),
@@ -55,6 +57,27 @@ class AppRouterDelegate extends RouterDelegate<RouterConfiguration>
           child: const RoutesPage(),
           key: const Key('routes_page'),
         ),
+      );
+    } else if (path is ScenariosRoutePath) {
+      pages.addAll(
+        [
+          const MaterialPage<void>(
+            child: const RoutesPage(),
+            key: const Key('routes_page'),
+          ),
+          MaterialPage<void>(
+            child: RoutePage(
+              routeId: path.routeId,
+            ),
+            key: Key('route_page'),
+          ),
+          MaterialPage<void>(
+            child: ScenariosPage(
+              routeId: path.routeId,
+            ),
+            key: const Key('scenarios_page'),
+          ),
+        ],
       );
     } else if (path is SettingsRoutePath) {
       pages.add(
@@ -78,6 +101,10 @@ class AppRouterDelegate extends RouterDelegate<RouterConfiguration>
               notifier.path = const RoutesRoutePath();
             } else if (path is RoutesRoutePath) {
               notifier.path = const HomeRoutePath();
+            } else if (path is ScenariosRoutePath) {
+              notifier.path = RouteRoutePath(
+                routeId: path.routeId,
+              );
             } else if (path is SettingsRoutePath) {
               notifier.path = const HomeRoutePath();
             }

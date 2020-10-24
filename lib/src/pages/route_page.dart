@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:train_simulator_client/train_simulator_client.dart' hide Key;
+import 'package:train_simulator_utilities/src/route_paths/scenarios_route_path.dart';
 import 'package:train_simulator_utilities/src/states/app_state.dart';
+import 'package:train_simulator_utilities/src/states/router_state.dart';
 
 class RoutePage extends StatefulWidget {
-  final String id;
+  final String routeId;
 
   const RoutePage({
     Key key,
-    @required this.id,
+    @required this.routeId,
   }) : super(
           key: key,
         );
@@ -23,7 +25,7 @@ class _RoutePageState extends State<RoutePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.id),
+        title: Text(widget.routeId),
       ),
       body: FutureBuilder<CRouteProperties>(
         future: _future,
@@ -38,6 +40,15 @@ class _RoutePageState extends State<RoutePage> {
                         .english
                         .toString(),
                   ),
+                ),
+                Divider(),
+                ListTile(
+                  title: Text('Scenarios'),
+                  onTap: () {
+                    RouterState.of(context).path = ScenariosRoutePath(
+                      routeId: widget.routeId,
+                    );
+                  },
                 ),
               ],
             );
@@ -54,6 +65,6 @@ class _RoutePageState extends State<RoutePage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _future = AppState.of(context).client.route(widget.id).get();
+    _future = AppState.of(context).client.route(widget.routeId).get();
   }
 }
