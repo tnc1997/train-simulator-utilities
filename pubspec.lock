@@ -249,7 +249,7 @@ packages:
       name: stack_trace
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.10.0-nullsafety.2"
+    version: "1.10.0-nullsafety.4"
   stream_channel:
     dependency: transitive
     description:
@@ -282,11 +282,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v0.3.0"
-      resolved-ref: "35a630a45689057ebb173a30ea6aca826590e8b1"
+      ref: "v0.4.0"
+      resolved-ref: f21c1e05fce84c591a9aee1f51f75a42f0346ae3
       url: "https://github.com/tnc1997/dart-train-simulator-client"
     source: git
-    version: "0.3.0"
+    version: "0.4.0"
   typed_data:
     dependency: transitive
     description:
@@ -330,5 +330,5 @@ packages:
     source: hosted
     version: "1.0.0"
 sdks:
-  dart: ">=2.10.0-110 <=2.11.0-207.0.dev"
+  dart: ">=2.10.0-110 <=2.11.0-234.0.dev"
   flutter: ">=1.12.13+hotfix.5 <2.0.0"
