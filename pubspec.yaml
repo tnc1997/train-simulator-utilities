@@ -31,7 +31,7 @@ dependencies:
 
   train_simulator_client:
     git:
-      ref: v0.4.0
+      ref: v0.5.0
       url: https://github.com/tnc1997/dart-train-simulator-client
 
   cupertino_icons: ^1.0.0

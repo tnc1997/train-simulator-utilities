@@ -282,11 +282,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v0.4.0"
-      resolved-ref: f21c1e05fce84c591a9aee1f51f75a42f0346ae3
+      ref: "v0.5.0"
+      resolved-ref: "509c55473289191c5d379a6ca8954aef8d8c058b"
       url: "https://github.com/tnc1997/dart-train-simulator-client"
     source: git
-    version: "0.4.0"
+    version: "0.5.0"
   typed_data:
     dependency: transitive
     description:
