@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/tnc1997/flutter-train-simulator-utilities/compare/v0.1.1...v0.1.2) (2020-10-24)
+
+
+### Features
+
+* **routes:** add detail page ([#4](https://github.com/tnc1997/flutter-train-simulator-utilities/issues/4)) ([be53d36](https://github.com/tnc1997/flutter-train-simulator-utilities/commit/be53d3661cf25c93af30ac0fe697129955f7a510))
+* **routes:** add list page ([#3](https://github.com/tnc1997/flutter-train-simulator-utilities/issues/3)) ([a1d4bc8](https://github.com/tnc1997/flutter-train-simulator-utilities/commit/a1d4bc86a9c8691611705056b0f7abd9b5addc05))
+* **routes:** add search ([#5](https://github.com/tnc1997/flutter-train-simulator-utilities/issues/5)) ([3bcdcb2](https://github.com/tnc1997/flutter-train-simulator-utilities/commit/3bcdcb2545768ea48f05f8ef7cf2bed9e6e8ea6f))
+
+
+### Chores
+
+* add license ([570d9a6](https://github.com/tnc1997/flutter-train-simulator-utilities/commit/570d9a60abe1384dc96513be13f454b1275f9704))
+
 ### [0.1.1](https://github.com/tnc1997/flutter-train-simulator-utilities/compare/v0.1.0...v0.1.1) (2020-10-17)
 
 
