@@ -85,6 +85,6 @@ class _RoutesPageState extends State<RoutesPage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _future = AppState.of(context).client.routes.get().toList();
+    _future = AppState.of(context).client.routes().get().toList();
   }
 }

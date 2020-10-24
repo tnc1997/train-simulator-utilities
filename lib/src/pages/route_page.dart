@@ -54,6 +54,6 @@ class _RoutePageState extends State<RoutePage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _future = AppState.of(context).client.routes.getById(widget.id);
+    _future = AppState.of(context).client.route(widget.id).get();
   }
 }

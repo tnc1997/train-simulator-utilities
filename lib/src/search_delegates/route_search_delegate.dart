@@ -37,7 +37,7 @@ class RouteSearchDelegate extends SearchDelegate<CRouteProperties> {
     return FutureBuilder<List<CRouteProperties>>(
       future: AppState.of(context)
           .client
-          .routes
+          .routes()
           .get()
           .where((cRouteProperties) => cRouteProperties
               .displayName.localisationCUserLocalisedString.english
