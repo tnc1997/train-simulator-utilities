@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mdi/mdi.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:train_simulator_utilities/src/states/app_state.dart';
-import 'package:train_simulator_utilities/src/widgets/app_drawer.dart';
+import 'package:train_simulator_utilities/states/app_state.dart';
+import 'package:train_simulator_utilities/widgets/app_drawer.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({
-    Key key,
+    Key? key,
   }) : super(
           key: key,
         );
@@ -16,7 +15,7 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  TextEditingController _controller;
+  late TextEditingController _rootPathController;
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +27,11 @@ class _SettingsPageState extends State<SettingsPage> {
         children: <Widget>[
           Builder(
             builder: (context) {
-              _controller.text = AppState.of(context).path;
               return ListTile(
                 title: TextField(
-                  controller: _controller,
+                  controller: _rootPathController,
                   decoration: InputDecoration(
-                    labelText: 'Path',
+                    labelText: 'Root path',
                     hintText:
                         'C:\\Program Files (x86)\\Steam\\steamapps\\common\\RailWorks',
                   ),
@@ -41,10 +39,8 @@ class _SettingsPageState extends State<SettingsPage> {
                 trailing: IconButton(
                   icon: Icon(Mdi.contentSave),
                   onPressed: () async {
-                    final preferences = await SharedPreferences.getInstance();
-                    await preferences.setString('path', _controller.text);
-
-                    AppState.of(context).path = _controller.text;
+                    await AppState.of(context)
+                        ?.setRootPath(_rootPathController.text);
                   },
                   tooltip: 'Save',
                 ),
@@ -58,14 +54,23 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final rootPath = AppState.of(context)?.getRootPath();
+    if (rootPath != null) {
+      _rootPathController.text = rootPath;
+    }
+  }
+
+  @override
   void dispose() {
-    _controller.dispose();
+    _rootPathController.dispose();
     super.dispose();
   }
 
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController();
+    _rootPathController = TextEditingController();
   }
 }

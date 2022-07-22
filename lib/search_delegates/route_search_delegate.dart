@@ -1,9 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:mdi/mdi.dart';
-import 'package:train_simulator_client/train_simulator_client.dart';
-import 'package:train_simulator_utilities/src/states/app_state.dart';
+import 'package:path/path.dart';
+import 'package:train_simulator_utilities/states/app_state.dart';
 
-class RouteSearchDelegate extends SearchDelegate<CRouteProperties> {
+class RouteSearchDelegate extends SearchDelegate<Directory?> {
   @override
   List<Widget> buildActions(BuildContext context) {
     return <Widget>[
@@ -34,14 +36,12 @@ class RouteSearchDelegate extends SearchDelegate<CRouteProperties> {
 
   @override
   Widget buildResults(BuildContext context) {
-    return FutureBuilder<List<CRouteProperties>>(
-      future: AppState.of(context)
-          .client
-          .routes()
-          .get()
-          .where((cRouteProperties) => cRouteProperties
-              .displayName.localisationCUserLocalisedString.english
-              .toString()
+    return FutureBuilder<List<Directory>>(
+      future: AppState.of(context)!
+          .client!
+          .routes
+          .list()
+          .where((directory) => basename(directory.path)
               .toLowerCase()
               .contains(query.toLowerCase()))
           .toList(),
@@ -51,16 +51,14 @@ class RouteSearchDelegate extends SearchDelegate<CRouteProperties> {
             itemBuilder: (context, index) {
               return ListTile(
                 title: Text(
-                  snapshot.data[index].displayName
-                      .localisationCUserLocalisedString.english
-                      .toString(),
+                  basename(snapshot.data![index].path),
                 ),
                 onTap: () {
-                  close(context, snapshot.data[index]);
+                  close(context, snapshot.data![index]);
                 },
               );
             },
-            itemCount: snapshot.data.length,
+            itemCount: snapshot.data!.length,
           );
         } else {
           return Center(

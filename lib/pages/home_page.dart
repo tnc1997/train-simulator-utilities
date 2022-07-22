@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:train_simulator_utilities/src/widgets/app_drawer.dart';
+import 'package:train_simulator_utilities/widgets/app_drawer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
-    Key key,
+    Key? key,
   }) : super(
           key: key,
         );

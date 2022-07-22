@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:mdi/mdi.dart';
-import 'package:train_simulator_utilities/src/route_paths/home_route_path.dart';
-import 'package:train_simulator_utilities/src/route_paths/routes_route_path.dart';
-import 'package:train_simulator_utilities/src/route_paths/settings_route_path.dart';
-import 'package:train_simulator_utilities/src/states/app_state.dart';
-import 'package:train_simulator_utilities/src/states/router_state.dart';
+import 'package:train_simulator_utilities/route_paths/home_route_path.dart';
+import 'package:train_simulator_utilities/route_paths/routes_route_path.dart';
+import 'package:train_simulator_utilities/route_paths/settings_route_path.dart';
+import 'package:train_simulator_utilities/states/app_state.dart';
+import 'package:train_simulator_utilities/states/router_state.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({
-    Key key,
+    Key? key,
   }) : super(
           key: key,
         );
@@ -29,17 +29,17 @@ class AppDrawer extends StatelessWidget {
             title: Text('Home'),
             onTap: () {
               Navigator.of(context).pop();
-              RouterState.of(context).path = const HomeRoutePath();
+              RouterState.of(context)?.path = const HomeRoutePath();
             },
           ),
           const Divider(),
           ListTile(
             leading: Icon(Mdi.routes),
             title: Text('Routes'),
-            enabled: AppState.of(context).client != null,
+            enabled: AppState.of(context)?.client != null,
             onTap: () {
               Navigator.of(context).pop();
-              RouterState.of(context).path = const RoutesRoutePath();
+              RouterState.of(context)?.path = const RoutesRoutePath();
             },
           ),
           const Divider(),
@@ -57,7 +57,7 @@ class AppDrawer extends StatelessWidget {
             title: Text('Settings'),
             onTap: () {
               Navigator.of(context).pop();
-              RouterState.of(context).path = const SettingsRoutePath();
+              RouterState.of(context)?.path = const SettingsRoutePath();
             },
           ),
         ],

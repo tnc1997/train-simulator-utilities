@@ -20,7 +20,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 0.1.2+102
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0-0 <3.0.0"
 
 dependencies:
   flutter:
@@ -31,18 +31,23 @@ dependencies:
 
   train_simulator_client:
     git:
-      ref: v0.5.0
+      ref: v0.6.0-nullsafety.1
       url: https://github.com/tnc1997/dart-train-simulator-client
 
-  cupertino_icons: ^1.0.0
-  intl: ^0.16.0
-  mdi: ^4.0.0
-  path: ^1.0.0
+  file_selector: ^0.7.0
+  file_selector_windows: ^0.0.1
+  intl: ^0.17.0-nullsafety
+  mdi: ^5.0.0-nullsafety
+  path: ^1.8.0-nullsafety
   shared_preferences: ^0.5.0
+  tuple: ^2.0.0-nullsafety
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+dependency_overrides:
+  ffi: ^0.2.0-nullsafety
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
